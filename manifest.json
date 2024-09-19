@@ -1,0 +1,189 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.15/MicrosoftTeams.schema.json",
+  "version": "1.0.0",
+  "manifestVersion": "1.15",
+  "id": "3bf45233-1355-4d22-bc16-afbd72ed2169",
+  "packageName": "pkg",
+  "name": {
+    "short": "Centralized Test Bot",
+    "full": ""
+  },
+  "developer": {
+    "name": "Bots Team",
+    "mpnId": "",
+    "websiteUrl": "https://domoreexp.visualstudio.com/Teamspace/_git/teams-service-platform-testbot",
+    "privacyUrl": "https://domoreexp.visualstudio.com/Teamspace/_git/teams-service-platform-testbot",
+    "termsOfUseUrl": "https://domoreexp.visualstudio.com/Teamspace/_git/teams-service-platform-testbot"
+  },
+  "description": {
+    "short": "Centralized Test Bot",
+    "full": "Centralized Test Bot"
+  },
+  "icons": {
+    "outline": "outline.png",
+    "color": "color.png"
+  },
+  "accentColor": "#FFFFFF",
+  "staticTabs": [
+    {
+      "entityId": "conversations",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "about",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://tabs.teams.microsoft.com/df/youtube",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "groupChat",
+        "team"
+      ],
+      "context": [
+        "meetingSidePanel"
+      ]
+    }
+  ],
+  "bots": [
+    {
+      "botId": "3bf45233-1355-4d22-bc16-afbd72ed2169",
+      "scopes": [
+        "personal",
+        "team",
+        "groupchat"
+      ],
+      "configuration": {
+        "groupChat": {
+          "fetchTask": true
+        },
+        "team": {
+          "fetchTask": true
+        }
+      },
+      "isNotificationOnly": false,
+      "supportsCalling": false,
+      "supportsVideo": false,
+      "supportsFiles": true,
+      "commandLists": [
+        {
+          "scopes": ["personal"],
+          "commands": [
+            {
+              "title": "/help",
+              "description": "Show available commands"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "composeExtensions": [
+    {
+      "botId": "3bf45233-1355-4d22-bc16-afbd72ed2169",
+      "commands": [
+        {
+          "id": "searchCmd",
+          "description": "Search you Todo's",
+          "title": "Search",
+          "initialRun": true,
+          "context": ["commandBox", "compose"],
+          "parameters": [
+            {
+              "name": "searchKeyword",
+              "description": "Enter your search keywords",
+              "title": "Keywords"
+            }
+          ]
+        },
+        {
+          "id": "addTodo",
+          "description": "Create a To Do item",
+          "title": "Create To Do",
+          "type": "action",
+          "context": ["commandBox", "message", "compose"],
+          "parameters": [
+            {
+              "name": "Name",
+              "description": "To Do Title",
+              "title": "Title",
+              "inputType": "text"
+            },
+            {
+              "name": "Description",
+              "description": "Description of the task",
+              "title": "Description",
+              "inputType": "textarea"
+            },
+            {
+              "name": "Date",
+              "description": "Due date for the task",
+              "title": "Date",
+              "inputType": "date"
+            }
+          ]
+        },
+        {
+          "id": "messagingExtensionFetchTask",
+          "description": "trigger fetch task in messaging extension",
+          "title": "MessagingExtension Fetch Task",
+          "type": "action",
+          "context": [ "commandBox", "message", "compose" ],
+          "fetchTask": true
+        }
+      ],
+      "canUpdateConfiguration": true,
+      "messageHandlers": [
+        {
+          "type": "link",
+          "value": {
+            "domains": [
+              "*.test.com",
+              "test.com"
+            ],
+            "supportsAnonymizedPayloads": true
+          }
+        }
+      ]
+    }
+  ],
+  "validDomains": [
+    "*.bing.com",
+    "*.pokernow.club",
+    "*.tabs.teams.microsoft.com",
+    "*.youtube.com"
+  ],
+  "authorization": {
+    "permissions": {
+        "orgWide": [],
+        "resourceSpecific": [
+          {
+            "name": "OnlineMeetingNotification.Send.Chat",
+            "type": "Application"
+        },
+        {
+          "name": "OnlineMeeting.ReadBasic.Chat",
+          "type": "Application"
+        },
+        {
+          "name": "ChannelMeeting.ReadBasic.Group",
+          "type": "Application"
+        },
+        {
+          "name": "OnlineMeetingParticipant.Read.Chat",
+          "type": "Application"
+          }
+        ]
+      }
+  },
+  "webApplicationInfo": {
+    "id": "3bf45233-1355-4d22-bc16-afbd72ed2169",
+    "resource": "https://RscPermission"
+  }
+}
